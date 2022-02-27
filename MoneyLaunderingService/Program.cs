@@ -2,17 +2,17 @@
 using Confluent.Kafka;
 
 Console.WriteLine("Money Laundering Service started");
-
+var kafkaAddress = Environment.GetEnvironmentVariable("KAFKA_ADDRESS", EnvironmentVariableTarget.Process)!;
 var consumerConfig = new ConsumerConfig
 {
-    BootstrapServers = "localhost:9092",
+    BootstrapServers = kafkaAddress,
     GroupId = "MoneyLaunderingService",
     AutoOffsetReset = AutoOffsetReset.Earliest
 };
 
 var producerConfig = new ProducerConfig
 {
-    BootstrapServers = "localhost:9092",
+    BootstrapServers = kafkaAddress,
     ClientId = Dns.GetHostName(),
 };
 

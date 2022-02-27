@@ -2,11 +2,11 @@
 using Confluent.Kafka;
 
 Console.WriteLine("Start Core Banking Service");
-
+var kafkaAddress = Environment.GetEnvironmentVariable("KAFKA_ADDRESS", EnvironmentVariableTarget.Process)!;
 var random = new Random();
 var config = new ProducerConfig
 {
-    BootstrapServers = "localhost:9092",
+    BootstrapServers = kafkaAddress,
     ClientId = Dns.GetHostName(),
 };
 

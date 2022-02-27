@@ -1,10 +1,10 @@
 ﻿using Confluent.Kafka;
 
 Console.WriteLine("Transaction Analytics Service started");
-
+var kafkaAddress = Environment.GetEnvironmentVariable("KAFKA_ADDRESS", EnvironmentVariableTarget.Process)!;
 var config = new ConsumerConfig
 {
-    BootstrapServers = "localhost:9092",
+    BootstrapServers = kafkaAddress,
     GroupId = "TransactionAnalyticsService",
     AutoOffsetReset = AutoOffsetReset.Earliest
 };
